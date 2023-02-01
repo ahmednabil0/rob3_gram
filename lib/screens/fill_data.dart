@@ -1,8 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rob3_garam/helper/const.dart';
-import 'package:rob3_garam/screens/camera_veiw.dart';
+
+import '../helper/const.dart';
+import 'camera_veiw.dart';
 
 class FillData extends StatefulWidget {
   const FillData({super.key});
@@ -15,6 +16,7 @@ class _FillDataState extends State<FillData> {
   int? _value;
   int? _value2;
   String error = '';
+  String age = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,26 +109,15 @@ class _FillDataState extends State<FillData> {
                     height: 10,
                   ),
                   value: _value2,
-                  items: const [
-                    DropdownMenuItem(
-                      value: 1,
+                  items: List.generate(
+                    70,
+                    (index) => DropdownMenuItem(
+                      value: index + 1,
                       child: Text(
-                        "20:40",
+                        '${20 + index}',
                       ),
                     ),
-                    DropdownMenuItem(
-                      value: 2,
-                      child: Text(
-                        "40:60",
-                      ),
-                    ),
-                    DropdownMenuItem(
-                      value: 3,
-                      child: Text(
-                        "60:80",
-                      ),
-                    )
-                  ],
+                  ),
                   onChanged: (value) {
                     setState(() {
                       _value2 = value!;
@@ -168,7 +159,8 @@ class _FillDataState extends State<FillData> {
                   await availableCameras().then((value) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => CameraVeiw(cameras: value),
+                        builder: (context) =>
+                            CameraVeiw(age: _value2! + 19, cameras: value),
                       ),
                     );
                   });

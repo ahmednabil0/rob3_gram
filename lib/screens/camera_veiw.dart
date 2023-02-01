@@ -1,15 +1,26 @@
+// ignore_for_file: use_build_context_synchronously, unnecessary_null_comparison
+
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rob3_garam/helper/const.dart';
 import 'package:rob3_garam/screens/result_screen.dart';
 
+import '../api/api_services.dart';
+import '../helper/const.dart';
+import '../helper/dialog.dart';
+
 class CameraVeiw extends StatefulWidget {
-  const CameraVeiw({required this.cameras, super.key});
+  const CameraVeiw({
+    Key? key,
+    required this.cameras,
+    required this.age,
+  }) : super(key: key);
   final List<CameraDescription> cameras;
+  final int age;
 
   @override
   State<CameraVeiw> createState() => _CameraVeiwState();
@@ -21,6 +32,9 @@ class _CameraVeiwState extends State<CameraVeiw> {
   XFile? newImage;
   int selectedCamera = 0;
   final ImagePicker _picker = ImagePicker();
+  String msg = '';
+  String? status = '';
+  int? dgree;
 
   @override
   void initState() {
@@ -161,40 +175,47 @@ class _CameraVeiwState extends State<CameraVeiw> {
                 'The result may differ by \n +1 mm depend on the distance between the camera and the eye',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: const Color(0xff393939),
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16.5.sp,
-                    height: 1.35,
-                    letterSpacing: 1),
+                  color: const Color(0xff393939),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16.5.sp,
+                  height: 1.35,
+                  letterSpacing: 1,
+                ),
               ),
             ),
             const Spacer(),
             InkWell(
-              onDoubleTap: () async {
-                if (pickedImage != null) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const ResultScreen(minVal: 23),
+              onTap: () async {
+                showAlertDialog(context);
+                ApiServices controller = ApiServices();
+                String i = await controller.upload(
+                  File(pickedImage!.path),
+                  widget.age,
+                );
+                Navigator.of(context).pop();
+                if (i != 'null') {
+                  Map valueMap = jsonDecode(i);
+                  if (valueMap.containsKey('error')) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ResultScreen(
+                        Val: 0,
+                        msg: valueMap['error'],
+                      ),
+                    ));
+                  } else {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ResultScreen(
+                        Val: valueMap['Horizontal Diameter'],
+                        status: valueMap['status'],
+                      ),
+                    ));
+                  }
+                } else {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ResultScreen(
+                      Val: 0,
                     ),
-                  );
-                }
-              },
-              onTap: () {
-                if (pickedImage != null) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const ResultScreen(minVal: 0),
-                    ),
-                  );
-                }
-              },
-              onLongPress: () {
-                if (pickedImage != null) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const ResultScreen(minVal: 57),
-                    ),
-                  );
+                  ));
                 }
               },
               child: AnimatedContainer(

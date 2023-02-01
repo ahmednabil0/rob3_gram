@@ -1,13 +1,22 @@
+import 'dart:math' as math; // import this
+import 'dart:ui' as ui;
+
 import 'package:at_gauges/at_gauges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rob3_garam/helper/const.dart';
-import 'dart:ui' as ui;
-import 'dart:math' as math; // import this
+
+import '../helper/const.dart';
 
 class ResultScreen extends StatefulWidget {
-  const ResultScreen({required this.minVal, super.key});
-  final double minVal;
+  const ResultScreen({
+    Key? key,
+    this.Val,
+    this.msg,
+    this.status,
+  }) : super(key: key);
+  final double? Val;
+  final String? msg;
+  final String? status;
 
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -34,7 +43,7 @@ class _ResultScreenState extends State<ResultScreen> {
             SizedBox(
               height: 10.h,
             ),
-            widget.minVal == 0
+            widget.Val == 0
                 ? const SizedBox()
                 : Align(
                     alignment: Alignment.bottomRight,
@@ -53,46 +62,47 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
             SizedBox(
-              height: 4.h,
+              height: 2.h,
             ),
             SizedBox(
               height: 300.h,
-              child: widget.minVal == 0
+              child: widget.Val == 0
                   ? Center(
                       child: Text(
-                        'No pupil detected',
+                        widget.msg ?? 'No pupil detected , try agian',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: const Color(0xff2381C1),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 19.sp,
                           height: 1.35,
                         ),
                       ),
                     )
                   : SimpleRadialGauge(
-                      actualValue: widget.minVal,
+                      actualValue: widget.Val!,
 
                       maxValue: 100,
+
                       icon: Icon(
-                        widget.minVal > 50
+                        widget.status == 'abnormal'
                             ? Icons.warning_rounded
                             : Icons.check,
-                        color: widget.minVal > 50
+                        color: widget.status == 'abnormal'
                             ? errorColor.withOpacity(0.6)
                             : Colors.green,
                       ),
                       // Optional Parameters
                       minValue: 0,
                       title: Text(
-                        widget.minVal <= 50 ? 'normal' : 'abnormal',
+                        widget.status != 'abnormal' ? 'normal' : 'abnormal',
                         style: TextStyle(
                             // color: const Color(0xffD23B3B),
                             fontSize: 25.sp,
                             fontWeight: FontWeight.bold,
                             foreground: Paint()
                               ..shader = ui.Gradient.linear(
-                                widget.minVal <= 50
+                                widget.status != 'abnormal'
                                     ? const Offset(0, 25)
                                     : const Offset(100, 0),
                                 const Offset(0, 25),
@@ -104,13 +114,13 @@ class _ResultScreenState extends State<ResultScreen> {
                       ),
                       titlePosition: TitlePosition.bottom,
                       unit: '%',
-                      pointerColor: widget.minVal < 50
+                      pointerColor: widget.status != 'abnormal'
                           ? Colors.green.withOpacity(0.8)
                           : const Color(0xffD23B3B),
-                      decimalPlaces: 0,
+                      decimalPlaces: 2,
                       isAnimate: true,
                       animationDuration: 500,
-                      size: 230,
+                      size: 235,
                     ),
             ),
             SizedBox(
@@ -130,7 +140,7 @@ class _ResultScreenState extends State<ResultScreen> {
               ),
             ),
             const Spacer(),
-            widget.minVal == 0
+            widget.Val == 0
                 ? IconButton(
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -172,7 +182,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     ],
                   ),
             SizedBox(
-              height: 15.h,
+              height: 40.h,
             ),
           ],
         ),

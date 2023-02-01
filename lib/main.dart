@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rob3_garam/screens/splash_screan.dart';
+
+import 'screens/splash_screan.dart';
 
 void main() {
   runApp(const MyApp());
