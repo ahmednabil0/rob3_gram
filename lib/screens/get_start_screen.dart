@@ -34,36 +34,34 @@ class _GetStratedScreenState extends State<GetStratedScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: 80.h,
+              height: 60.h,
             ),
             SizedBox(
-              height: 320.h,
+              height: 360.h,
               child: CarouselSlider.builder(
                 itemCount: AppData.data.length,
                 itemBuilder:
                     (BuildContext context, int itemIndex, int pageViewIndex) =>
                         Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Image.asset(
                       AppData.data[itemIndex]['img'],
                       height: 150.h,
                     ),
                     SizedBox(
-                      height: 15.h,
+                      height: 10.h,
                     ),
                     Padding(
-                      padding: EdgeInsets.all(6.0.r),
+                      padding: EdgeInsets.all(8.r),
                       child: Text(
                         AppData.data[itemIndex]['des'],
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: const Color(0xffD7D7D7),
                             fontSize: 18.sp,
-                            height: 1.35),
+                            height: 1.36),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5.h,
                     ),
                   ],
                 ),
@@ -72,7 +70,7 @@ class _GetStratedScreenState extends State<GetStratedScreen> {
                     activeIndex = index;
                     setState(() {});
                   },
-                  height: 500.h,
+                  height: 380.h,
                   viewportFraction: 1,
                   initialPage: 0,
                   enableInfiniteScroll: false,
@@ -97,9 +95,7 @@ class _GetStratedScreenState extends State<GetStratedScreen> {
                 spacing: 8.r,
               ),
             ),
-            SizedBox(
-              height: 100.h,
-            ),
+            const Spacer(),
             InkWell(
               onTap: () {
                 if (activeIndex == 1) {
@@ -132,6 +128,9 @@ class _GetStratedScreenState extends State<GetStratedScreen> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 40.h,
             ),
           ],
         ),

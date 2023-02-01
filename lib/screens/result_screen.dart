@@ -113,7 +113,7 @@ class _ResultScreenState extends State<ResultScreen> {
                               )),
                       ),
                       titlePosition: TitlePosition.bottom,
-                      unit: '%',
+                      unit: 'mm',
                       pointerColor: widget.status != 'abnormal'
                           ? Colors.green.withOpacity(0.8)
                           : const Color(0xffD23B3B),
