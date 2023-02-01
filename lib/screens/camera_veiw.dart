@@ -205,7 +205,7 @@ class _CameraVeiwState extends State<CameraVeiw> {
                   } else {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ResultScreen(
-                        Val: valueMap['Horizontal Diameter'],
+                        Val: double.parse(valueMap['Horizontal Diameter']),
                         status: valueMap['status'],
                       ),
                     ));

@@ -7,7 +7,7 @@ class AppData {
     {
       'img': 'assets/images/intro2.png',
       'des':
-          'Keep adjusting the camera for an around 15 cm from a singlr eye then tap RESULT button to see pupil size'
+          'Keep adjusting the camera for around 15 cm and use a light of the intensity of 100 cd/m2 from a single eye then tap RESULT button to see if a person is a drug addict or not'
     }
   ];
 }

@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rob3_garam/helper/const.dart';
-import 'package:rob3_garam/helper/data/get_started_data.dart';
-import 'package:rob3_garam/screens/fill_data.dart';
+import '../helper/const.dart';
+import '../helper/data/get_started_data.dart';
+import 'fill_data.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class GetStratedScreen extends StatefulWidget {
@@ -26,7 +26,8 @@ class _GetStratedScreenState extends State<GetStratedScreen> {
           height: 28.h,
         ),
       ),
-      body: SizedBox(
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10.r),
         width: double.infinity,
         height: double.infinity,
         child: Column(
@@ -55,7 +56,9 @@ class _GetStratedScreenState extends State<GetStratedScreen> {
                         AppData.data[itemIndex]['des'],
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.white, fontSize: 18.sp, height: 1.35),
+                            color: Color(0xffD7D7D7),
+                            fontSize: 18.sp,
+                            height: 1.35),
                       ),
                     ),
                     SizedBox(
