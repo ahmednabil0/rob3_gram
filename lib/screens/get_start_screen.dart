@@ -1,10 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import '../helper/const.dart';
 import '../helper/data/get_started_data.dart';
 import 'fill_data.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class GetStratedScreen extends StatefulWidget {
   const GetStratedScreen({super.key});
@@ -33,36 +34,36 @@ class _GetStratedScreenState extends State<GetStratedScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: 400.h,
+              height: 80.h,
+            ),
+            SizedBox(
+              height: 320.h,
               child: CarouselSlider.builder(
                 itemCount: AppData.data.length,
                 itemBuilder:
                     (BuildContext context, int itemIndex, int pageViewIndex) =>
                         Column(
                   children: [
-                    SizedBox(
-                      height: 80.h,
-                    ),
                     Image.asset(
                       AppData.data[itemIndex]['img'],
                       height: 150.h,
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 15.h,
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0.r),
+                      padding: EdgeInsets.all(6.0.r),
                       child: Text(
                         AppData.data[itemIndex]['des'],
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Color(0xffD7D7D7),
+                            color: const Color(0xffD7D7D7),
                             fontSize: 18.sp,
                             height: 1.35),
                       ),
                     ),
                     SizedBox(
-                      height: 10.h,
+                      height: 5.h,
                     ),
                   ],
                 ),
@@ -71,7 +72,7 @@ class _GetStratedScreenState extends State<GetStratedScreen> {
                     activeIndex = index;
                     setState(() {});
                   },
-                  height: 700.h,
+                  height: 500.h,
                   viewportFraction: 1,
                   initialPage: 0,
                   enableInfiniteScroll: false,
