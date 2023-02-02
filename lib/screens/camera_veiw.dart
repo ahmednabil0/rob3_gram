@@ -36,6 +36,18 @@ class _CameraVeiwState extends State<CameraVeiw> {
   String? status = '';
   int? dgree;
 
+  final snackBar = SnackBar(
+    backgroundColor: scondaryColor,
+    content: Text(
+      'image is required to complete operation',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        color: errorColor.withOpacity(0.7),
+        fontSize: 15.sp,
+      ),
+    ),
+  );
+
   @override
   void initState() {
     controller =
@@ -218,6 +230,8 @@ class _CameraVeiwState extends State<CameraVeiw> {
                       ),
                     ));
                   }
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
               },
               child: AnimatedContainer(

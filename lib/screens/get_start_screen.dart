@@ -58,7 +58,7 @@ class _GetStratedScreenState extends State<GetStratedScreen> {
                         AppData.data[itemIndex]['des'],
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: const Color(0xffD7D7D7),
+                            color: const Color(0xffD7D7D7).withOpacity(0.93),
                             fontSize: 18.sp,
                             height: 1.36),
                       ),

@@ -17,8 +17,8 @@ void showAlertDialog(BuildContext context) {
           height: MediaQuery.of(context).size.height / 4,
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
-            border: Border.all(color: thirdColor, width: 2),
-            color: whiteColor.withOpacity(0.9),
+            border: Border.all(color: thirdColor.withOpacity(0.7), width: 2),
+            color: scondaryColor,
             borderRadius: BorderRadius.all(Radius.circular(20.0.r)),
           ),
           child: Column(
@@ -26,15 +26,15 @@ void showAlertDialog(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Loading...',
+                'Loading',
                 style: TextStyle(
                   fontSize: 20.sp,
-                  color: primaryColor.withOpacity(0.5),
+                  color: whiteColor.withOpacity(0.7),
                   fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(
-                height: 10.h,
+                height: 12.h,
               ),
               const CircularProgressIndicator(
                 color: thirdColor,
