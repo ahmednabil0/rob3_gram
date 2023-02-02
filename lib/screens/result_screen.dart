@@ -11,11 +11,11 @@ import '../helper/dialog.dart';
 class ResultScreen extends StatefulWidget {
   const ResultScreen({
     Key? key,
-    this.Val,
+    this.val,
     this.msg,
     this.status,
   }) : super(key: key);
-  final double? Val;
+  final double? val;
   final String? msg;
   final String? status;
 
@@ -44,7 +44,7 @@ class _ResultScreenState extends State<ResultScreen> {
             SizedBox(
               height: 10.h,
             ),
-            widget.Val == 0
+            widget.val == 0
                 ? const SizedBox()
                 : Align(
                     alignment: Alignment.bottomRight,
@@ -67,7 +67,7 @@ class _ResultScreenState extends State<ResultScreen> {
             ),
             SizedBox(
               height: 300.h,
-              child: widget.Val == 0
+              child: widget.val == 0
                   ? Center(
                       child: Text(
                         widget.msg ?? 'No pupil detected , try agian',
@@ -81,7 +81,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       ),
                     )
                   : SimpleRadialGauge(
-                      actualValue: widget.Val!,
+                      actualValue: widget.val!,
 
                       maxValue: 100,
 
@@ -141,7 +141,7 @@ class _ResultScreenState extends State<ResultScreen> {
               ),
             ),
             const Spacer(),
-            widget.Val == 0
+            widget.val == 0
                 ? IconButton(
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -170,7 +170,7 @@ class _ResultScreenState extends State<ResultScreen> {
                               showdataDialog(
                                 context,
                                 TextEditingController(),
-                                widget.Val!,
+                                widget.val!,
                                 widget.status!,
                               );
                             },

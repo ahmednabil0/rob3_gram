@@ -198,14 +198,14 @@ class _CameraVeiwState extends State<CameraVeiw> {
                   if (valueMap.containsKey('error')) {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ResultScreen(
-                        Val: 0,
+                        val: 0,
                         msg: valueMap['error'],
                       ),
                     ));
                   } else {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ResultScreen(
-                        Val: double.parse(valueMap['Horizontal Diameter']),
+                        val: double.parse(valueMap['Horizontal Diameter']),
                         status: valueMap['status'],
                       ),
                     ));
@@ -213,7 +213,7 @@ class _CameraVeiwState extends State<CameraVeiw> {
                 } else {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const ResultScreen(
-                      Val: 0,
+                      val: 0,
                     ),
                   ));
                 }

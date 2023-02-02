@@ -119,7 +119,8 @@ void showdataDialog(BuildContext context, TextEditingController controller,
                   if (key.currentState!.validate()) {
                     Navigator.of(context).pop();
                     Share.share(
-                      ' status is $status and value is $val mm  (1/4 gram) ',
+                      '''sir ${controller.text} this is your tests  
+                    status is $status and value is $val mm  by:(1/4 gram) ''',
                       subject:
                           '''this ia a drug test of sir ${controller.text} and 
                               the resuls is $status and value is $val mm
