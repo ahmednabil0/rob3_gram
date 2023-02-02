@@ -26,7 +26,7 @@ void showAlertDialog(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Loading The Result',
+                'Loading...',
                 style: TextStyle(
                   fontSize: 20.sp,
                   color: primaryColor.withOpacity(0.5),

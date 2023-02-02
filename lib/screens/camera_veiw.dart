@@ -186,36 +186,38 @@ class _CameraVeiwState extends State<CameraVeiw> {
             const Spacer(),
             InkWell(
               onTap: () async {
-                showAlertDialog(context);
-                ApiServices controller = ApiServices();
-                String i = await controller.upload(
-                  File(pickedImage!.path),
-                  widget.age,
-                );
-                Navigator.of(context).pop();
-                if (i != 'null') {
-                  Map valueMap = jsonDecode(i);
-                  if (valueMap.containsKey('error')) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ResultScreen(
-                        val: 0,
-                        msg: valueMap['error'],
-                      ),
-                    ));
+                if (pickedImage != null) {
+                  showAlertDialog(context);
+                  ApiServices controller = ApiServices();
+                  String i = await controller.upload(
+                    File(pickedImage!.path),
+                    widget.age,
+                  );
+                  Navigator.of(context).pop();
+                  if (i != 'null') {
+                    Map valueMap = jsonDecode(i);
+                    if (valueMap.containsKey('error')) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ResultScreen(
+                          val: 0,
+                          msg: valueMap['error'],
+                        ),
+                      ));
+                    } else {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ResultScreen(
+                          val: double.parse(valueMap['Horizontal Diameter']),
+                          status: valueMap['status'],
+                        ),
+                      ));
+                    }
                   } else {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ResultScreen(
-                        val: double.parse(valueMap['Horizontal Diameter']),
-                        status: valueMap['status'],
+                      builder: (context) => const ResultScreen(
+                        val: 0,
                       ),
                     ));
                   }
-                } else {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const ResultScreen(
-                      val: 0,
-                    ),
-                  ));
                 }
               },
               child: AnimatedContainer(
