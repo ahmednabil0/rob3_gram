@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../helper/const.dart';
+import '../helper/dialog.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({
@@ -117,7 +118,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       pointerColor: widget.status != 'abnormal'
                           ? Colors.green.withOpacity(0.8)
                           : const Color(0xffD23B3B),
-                      decimalPlaces: 2,
+                      decimalPlaces: 1,
                       isAnimate: true,
                       animationDuration: 500,
                       size: 235,
@@ -129,7 +130,7 @@ class _ResultScreenState extends State<ResultScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0.r),
               child: Text(
-                'The result may differ by \n +1 mm depend on the distance between the camera and the eye',
+                'The result varies depending on \n the distance between the eye and the camera',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: const Color(0xff393939),
@@ -164,16 +165,26 @@ class _ResultScreenState extends State<ResultScreen> {
                               size: 25.w,
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15.r),
-                            child: Text(
-                              'share result',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: const Color(0xff2381C1),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15.sp,
-                                height: 1.35,
+                          InkWell(
+                            onTap: () {
+                              showdataDialog(
+                                context,
+                                TextEditingController(),
+                                widget.Val!,
+                                widget.status!,
+                              );
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15.r),
+                              child: Text(
+                                'share result',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: const Color(0xff2381C1),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15.sp,
+                                  height: 1.35,
+                                ),
                               ),
                             ),
                           ),

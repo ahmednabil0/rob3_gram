@@ -172,7 +172,7 @@ class _CameraVeiwState extends State<CameraVeiw> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0.r),
               child: Text(
-                'The result may differ by \n +1 mm depend on the distance between the camera and the eye',
+                'The result varies depending on \n the distance between the eye and the camera',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: const Color(0xff393939),
